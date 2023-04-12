@@ -8,21 +8,20 @@ $add.addEventListener("click", () => {
   if ($inp.value == "") {
     alert("글자를 입력하세요!");
   }
-  const $myLi = document.createElement("ul");
-  // const $myBtn = document.createElement("button");
-  $myLi.innerHTML = $inp.value;
-  // $myBtn.innerHTML = "+";
-  $listWrap.appendChild($myLi);
-  // $listWrap.appendChild($myBtn);
-  $inp.value = "";
+  const $myLi = document.createElement("li");
 
-  $myLi.style.backgroundColor = "white";
+  $myLi.innerHTML = $inp.value;
+
+  $listWrap.appendChild($myLi);
+
+  $myLi.classList.add("li-style");
+  $inp.value = "";
 });
 
 // 모두 삭제 버튼
 $delete.addEventListener("click", () => {
-  $myLi.innerHTML = "";
-  $listWrap.removeChild("ul");
-  $myLi.remove();
-  const $remove = (document.querySelector("ul").innerHTML = "");
+  const $ul = document.querySelectorAll(".li-style");
+  for (let i = 0; i < $ul.length; i++) {
+    $listWrap.removeChild($ul[i]);
+  }
 });
