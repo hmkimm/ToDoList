@@ -7,21 +7,45 @@ const $delete = document.querySelector(".delete");
 $add.addEventListener("click", () => {
   if ($inp.value == "") {
     alert("글자를 입력하세요!");
+  } else {
+    const $myLi = document.createElement("li");
+    const $myBtn = document.createElement("button");
+
+    $myLi.innerHTML = $inp.value;
+    $myBtn.innerHTML = "X";
+    $myBtn.setAttribute("type", "button");
+
+    $listWrap.appendChild($myLi);
+    $myLi.appendChild($myBtn);
+
+    $myLi.classList.add("li-style");
+    $inp.value = "";
   }
-  const $myLi = document.createElement("li");
-
-  $myLi.innerHTML = $inp.value;
-
-  $listWrap.appendChild($myLi);
-
-  $myLi.classList.add("li-style");
-  $inp.value = "";
 });
+
+// 개별삭제 버튼
+const $delBtn = document.querySelectorAll("li button");
+console.log($delBtn.length);
+for (let i = 0; i < $delBtn.length; i++)
+  $delBtn[i].addEventListener("click", () => {
+    document.querySelector(".list-wrap").removeChild("$myLi");
+    console.log($delBtn.length);
+  });
+
+// $myBtn.onClick = function (e) {
+//   let pnode = e.target.parentNode;
+//   $listWrap.removeChild(pnode);
+// };
+
+// // 완료 처리 버튼
+// $myLi.addEventListener("click", () => {
+//   $myLi.classList.add("horizontal-line");
+// });
 
 // 모두 삭제 버튼
 $delete.addEventListener("click", () => {
-  const $ul = document.querySelectorAll(".li-style");
-  for (let i = 0; i < $ul.length; i++) {
-    $listWrap.removeChild($ul[i]);
+  const $lis = document.querySelectorAll("li");
+  for (let i = 0; i < $lis.length; i++) {
+    $listWrap.removeChild($lis[i]);
   }
 });

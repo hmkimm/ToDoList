@@ -1,4 +1,13 @@
 /* reset css */
+
+@font-face {
+  font-family: "Dovemayo_gothic";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -21,41 +30,72 @@ article {
 /* main*/
 h1 {
   text-align: center;
+  font-size: 30px;
 }
 .wrap {
   display: flex;
   justify-content: space-between;
+  height: 33px;
   margin: 20px 0;
 }
 .text {
   width: calc(100% - 10px);
   border: none;
-  padding-left: 4px;
+  border-radius: 4px 0 0 4px;
+  padding-left: 10px;
 }
 .add {
-  width: 30px;
-  height: 30px;
+  width: 33px;
+  height: 33px;
   background-color: black;
   color: white;
-  border-radius: 2px;
+  border-radius: 0 4px 4px 0;
   border: none;
 }
 .delete {
-  display: inline-block;
+  display: block;
   background-color: black;
   color: white;
   border-radius: 6px;
   padding: 4px;
+  margin-left: auto;
 }
-
-/* .list-wrap {
-  box-shadow: inset 0 0 6px red;
+.list-container {
+  box-shadow: inset 0 0 6px blue;
+}
+.list-wrap {
+  /* display: flex;
+  justify-content: space-between; */
+  box-shadow: inset 0 0 4px red;
+  margin-bottom: 20px;
+}
+/* .list-wrap button {
+  border: none;
 } */
 
+/* 리스트 스타일 */
 .li-style {
-  margin-bottom: 7px;
+  margin-bottom: 15px;
   border-radius: 4px;
-  padding: 4px;
+  padding: 6px 8px;
   font-weight: normal;
   background-color: white;
+}
+
+li button {
+  float: right;
+  background-color: white;
+}
+
+.horizontal-line {
+  text-decoration: line-through;
+  color: pink;
+}
+
+/* 모바일 화면 */
+
+@media (max-width: 420px) {
+  body {
+    padding: 0px 30px;
+  }
 }
