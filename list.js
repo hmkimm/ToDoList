@@ -51,8 +51,11 @@ add.addEventListener("click", () => {
 
 // 모두 삭제 버튼
 $delete.addEventListener("click", () => {
-  const $lis = document.querySelectorAll("li");
-  for (let i = 0; i < $lis.length; i++) {
-    listWrap.removeChild($lis[i]);
+  let yes = confirm("정말 모두 삭제하시겠습니까?");
+  if (yes) {
+    const $lis = document.querySelectorAll("li");
+    for (let i = 0; i < $lis.length; i++) {
+      listWrap.removeChild($lis[i]);
+    }
   }
 });

@@ -98,4 +98,10 @@ li button {
   body {
     padding: 0px 30px;
   }
+  ul {
+    font-size: 14px;
+  }
+  li button {
+    background-color: transparent;
+  }
 }
