@@ -1,47 +1,39 @@
 const add = document.querySelector(".add");
-const inp = document.querySelector(".text");
+let inp = document.querySelector(".text");
 const listWrap = document.querySelector(".list-wrap");
 const $delete = document.querySelector(".delete");
+const myLi = document.createElement("li");
 
-const todos = [];
+let myArr = [inp.value];
 // 할일 추가, 완료, 삭제 버튼
 add.addEventListener("click", () => {
   if (inp.value == "") {
     alert("할 일을 입력하세요!");
   } else {
-    // const myLi = document.createElement("li");
-    // myLi.innerHTML = inp.value;
-    // listWrap.appendChild(myLi);
-    li생성();
+    createEle();
+    myArr.push(inp.value);
+    console.log(myArr);
 
-    const myBtn = document.createElement("button");
-    myBtn.innerHTML = "X";
-    myBtn.setAttribute("type", "button");
-    myLi.appendChild(myBtn);
-
-    // 추가
-    myLi.classList.add("li-style");
-    inp.value = "";
-
-    // 수정
+    //수정;
     myLi.addEventListener("click", () => {
       myLi.classList.toggle("horizontal-line");
-    });
-
-    //개별삭제
-    myBtn.addEventListener("click", () => {
-      listWrap.removeChild(myLi);
     });
   }
 });
 
-let li함수 = function li생성() {
-  const myLi = document.createElement("li");
+// 추가
+myLi.classList.add("li-style");
+inp.value = "";
+
+function createEle() {
   myLi.innerHTML = inp.value;
   listWrap.appendChild(myLi);
-};
 
-window.localStorage.setItem("list", "hi");
+  const myBtn = document.createElement("button");
+  myBtn.innerHTML = "X";
+  myLi.appendChild(myBtn);
+}
+
 // 개별삭제 버튼
 // const delBtn = document.querySelectorAll("li button");
 // console.log(delBtn.length);
