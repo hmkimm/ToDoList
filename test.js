@@ -9,28 +9,39 @@ add.addEventListener("click", () => {
   if (inp.value == "") {
     alert("할 일을 입력하세요!");
   } else {
-    const myLi = document.createElement("li");
-    const myBtn = document.createElement("button");
+    // const myLi = document.createElement("li");
+    // myLi.innerHTML = inp.value;
+    // listWrap.appendChild(myLi);
+    li생성();
 
-    myLi.innerHTML = inp.value;
+    const myBtn = document.createElement("button");
     myBtn.innerHTML = "X";
     myBtn.setAttribute("type", "button");
-
-    listWrap.appendChild(myLi);
     myLi.appendChild(myBtn);
 
+    // 추가
     myLi.classList.add("li-style");
     inp.value = "";
 
+    // 수정
     myLi.addEventListener("click", () => {
       myLi.classList.toggle("horizontal-line");
     });
+
+    //개별삭제
     myBtn.addEventListener("click", () => {
       listWrap.removeChild(myLi);
     });
   }
 });
 
+let li함수 = function li생성() {
+  const myLi = document.createElement("li");
+  myLi.innerHTML = inp.value;
+  listWrap.appendChild(myLi);
+};
+
+window.localStorage.setItem("list", "hi");
 // 개별삭제 버튼
 // const delBtn = document.querySelectorAll("li button");
 // console.log(delBtn.length);
