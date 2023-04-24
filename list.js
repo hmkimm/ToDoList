@@ -5,6 +5,9 @@ const $delete = document.querySelector(".delete");
 
 let myArr = [];
 
+function save() {
+  localStorage.setItem("todos", JSON.stringify(myArr));
+}
 // 할일 추가, 완료, 삭제 버튼
 add.addEventListener("click", () => {
   if (inp.value == "") {
@@ -14,17 +17,26 @@ add.addEventListener("click", () => {
     myLi.innerHTML = inp.value;
     listWrap.appendChild(myLi);
 
+    const todo = {
+      id: Date.now(),
+      text: inp.value,
+    };
+
+    myLi.id = todo.id;
+    // save();
     const myBtn = document.createElement("button");
     myBtn.innerHTML = "X";
     myLi.appendChild(myBtn);
 
     // array에 할 일 집어넣기
-    myArr.push(inp.value);
+    myArr.push(todo);
     inp.value = "";
 
     //삭제
-    myBtn.addEventListener("click", () => {
+    myBtn.addEventListener("click", (e) => {
+      myArr = myArr.filter((todo) => todo.id != e.target.parentElement.id);
       myLi.remove();
+      save();
     });
 
     //수정;
@@ -32,7 +44,7 @@ add.addEventListener("click", () => {
       myLi.classList.toggle("horizontal-line");
     });
 
-    //추가;
+    //li style;
     myLi.classList.add("li-style");
     console.log(myArr);
   }
@@ -52,14 +64,30 @@ $delete.addEventListener("click", () => {
   }
 });
 
-// $(".buy").click(function (e) {
-//   let title = $(e.target).siblings("h5").html();
+const init = () => {
+  const userTodos = JSON.parse(localStorage.getItem("todos"));
+  // console.log("check:" + userTodos);
+  // console.log("hi");
 
-//   if (localStorage.getItem("cart") != null) {
-//     let 꺼낸거 = JSON.parse(localStorage.cart);
-//     꺼낸거.push(title);
-//     localStorage.setItem("cart", JSON.stringify(꺼낸거));
-//   } else {
-//     localStorage.setItem("cart", JSON.stringify([title]));
-//   }
-// });
+  // if (userTodos != "") {
+  //   userTodos.forEach((todo) => {
+  //     addItem(todo);
+  //   });
+  // }
+
+  myArr = userTodos;
+};
+
+const addItem = (text) => {
+  if (text !== "") {
+    const myLi = document.createElement("li");
+    myLi.innerHTML = inp.value;
+    listWrap.appendChild(myLi);
+
+    const myBtn = document.createElement("button");
+    myBtn.innerHTML = "X";
+    myLi.appendChild(myBtn);
+  }
+};
+
+init();
